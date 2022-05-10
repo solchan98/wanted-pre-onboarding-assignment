@@ -1,0 +1,38 @@
+.movieInfo {
+  position: relative;
+  display: flex;
+  width: inherit;
+  height: 120px;
+  margin: 60px 3px;
+  background-color: aliceblue;
+  border-radius: 20px;
+
+  img {
+    width: 120px;
+    height: 160px;
+    margin: -50px 0 0 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+  }
+
+  .moiveInfo {
+    padding: 20px;
+
+    >p {
+      // margin: 10px 0;
+      font-size: 12px;
+      font-weight: bold;
+      opacity: 0.6;
+    }
+  }
+
+  >svg {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 22px;
+    height: 22px;
+  }
+}

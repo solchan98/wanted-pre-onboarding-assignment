@@ -1,20 +1,25 @@
+import MainNav from '../../components/common/mainNav';
+import MovieItem from '../../components/common/movieItem';
+import SearchBar from '../../components/common/searchBar';
 import styles from './Main.module.scss';
 
 const Main = () => {
+
   return(
     <section>
       <header>
         <h2>MOVIES</h2>
-        <form onSubmit={(e) => { e.preventDefault(); console.log('click!')}}>
-          <input type='text' placeholder='검색어를 입력하세요'/>
-          <button type='submit'>검색</button>
-        </form>
+        <SearchBar />
       </header>
       <main className={styles.main}>
-        메인
+        <ul>
+          <li>
+            <MovieItem />
+          </li>
+        </ul>
       </main>
       <footer>
-        푸터
+        <MainNav />
       </footer>
     </section>
   );
