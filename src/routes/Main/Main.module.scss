@@ -1,0 +1,35 @@
+section {
+  width: 360px;
+  height: 720px;
+  background-color: aqua;
+  border-radius: 40px;
+
+  header {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: inherit;
+    height: 90px;
+    padding: 20px;
+    background-color: bisque;
+    border-radius: 40px 40px 0 0;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  main {
+    width: inherit;
+    height: 560px;
+    background-color: burlywood;
+  }
+
+  footer {
+    width: inherit;
+    height: 70px;
+    background-color: darkcyan;
+    border-radius: 0 0 40px 40px;
+  }
+}
