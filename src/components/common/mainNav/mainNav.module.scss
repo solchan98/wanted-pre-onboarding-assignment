@@ -6,13 +6,17 @@ nav {
   width: inherit;
   height: 60px;
   padding: 20px;
-  // background-color: rgb(239, 239, 239);
   background-color: rgb(247, 247, 247);
   border-radius: 0 0 40px 40px;
 
-  button { // will change svg
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  button {
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+
+    svg {
+      width: 36px;
+      height: 36px;
+    }
   }
 }

@@ -32,6 +32,10 @@ section {
     padding: 0 20px;
     background-color: rgb(247, 247, 247);
 
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
     > ul {
       width: inherit;
       padding: 0;
