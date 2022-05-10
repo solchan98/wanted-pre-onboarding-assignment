@@ -5,9 +5,9 @@ const Main = () => {
     <section>
       <header>
         <h2>MOVIES</h2>
-        <form>
-          <input placeholder='검색어를 입력하세요'/>
-          <button type='button'>검색</button>
+        <form onSubmit={(e) => { e.preventDefault(); console.log('click!')}}>
+          <input type='text' placeholder='검색어를 입력하세요'/>
+          <button type='submit'>검색</button>
         </form>
       </header>
       <main className={styles.main}>
