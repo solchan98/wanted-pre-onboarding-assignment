@@ -4,7 +4,6 @@ import SearchBar from '../../components/common/searchBar';
 import styles from './Main.module.scss';
 
 const Main = () => {
-
   return(
     <section>
       <header>
@@ -18,9 +17,7 @@ const Main = () => {
           </li>
         </ul>
       </main>
-      <footer>
-        <MainNav />
-      </footer>
+      <footer><MainNav /></footer>
     </section>
   );
 };

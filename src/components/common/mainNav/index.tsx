@@ -1,19 +1,13 @@
+import { NavLink } from "react-router-dom";
 import { Favorites, Home } from "../../../assets/svgs";
-import useClickNav from "../../../hooks/useClickNav";
 import styles from './mainNav.module.scss';
 
 const MainNav = () => {
 
-  const [selectState, ,onClickBtn]  = useClickNav('/');
-
   return(
     <nav className={styles.nav}>
-      <button type='button' data-location='/' onClick={onClickBtn} aria-label='Main Button'>
-        <Home fill={selectState === '/' ? '#a8a8a8' : '#000'}/>
-      </button>
-      <button type='button' data-location='/favorites' onClick={onClickBtn} aria-label='Favorites Button'>
-        <Favorites fill={selectState === '/favorites' ? '#a8a8a8' : '#000'}/>
-      </button>
+      <NavLink to="/" className={prop => prop.isActive ? styles.navLinkOn : styles.navLinkOff}><Home /></NavLink>
+      <NavLink to="/favorites" className={prop => prop.isActive ? styles.navLinkOn : styles.navLinkOff}><Favorites /></NavLink>
     </nav>
   );
 };

@@ -9,14 +9,35 @@ nav {
   background-color: rgb(247, 247, 247);
   border-radius: 0 0 40px 40px;
 
-  button {
-    cursor: pointer;
-    background-color: inherit;
-    border: none;
-
+  .navLinkOn {
     svg {
       width: 36px;
       height: 36px;
+      fill: #000;
     }
   }
+
+  .navLinkOff {
+    svg {
+      width: 36px;
+      height: 36px;
+      fill: #a8a8a8;
+    }
+  }
+
+  // .navLinkOn {
+  //   svg {
+  //     width: 36px;
+  //     height: 36px;
+  //     fill: #a8a8a8;
+  //   }
+  // }
+
+  // .navLinkOff {
+  //   svg {
+  //     width: 36px;
+  //     height: 36px;
+  //     fill: #000;
+  //   }
+  // }
 }
