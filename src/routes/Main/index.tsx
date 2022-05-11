@@ -9,7 +9,7 @@ import MovieItem from '../../components/common/movieItem';
 import SearchBar from '../../components/common/searchBar';
 import useScroll from '../../hooks/common/useScroll';
 import MainNav from '../../components/common/mainNav';
-import styles from './Main.module.scss';
+import styles from './main.module.scss';
 
 const Main = () => {
 

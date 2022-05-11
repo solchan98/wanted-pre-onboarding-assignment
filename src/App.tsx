@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Main from './routes/Main';
-import Favorites from './routes/Favorites';
+import Main from './routes/main';
+import Favorites from './routes/favorites';
 
 const App = () => {
   return (
