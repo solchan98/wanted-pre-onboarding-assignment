@@ -2,17 +2,17 @@ import { AxiosError, AxiosResponse } from "axios";
 
 import { basicApi } from "../axios";
 /* eslint-disable import/extensions */
-import { IRMovie } from "../../types/apis";
+import { IMoiveResponse } from "../../types/apis";
 
-const API_KEY = '92e32667';
+const API_KEY = '';
 
 export const getMovieListByNameAndPage = (name: string, page = 1) => {
   return basicApi.get(`?apikey=${API_KEY}&s=${name}&page=${page}`)
-  .then((res: AxiosResponse): IRMovie[] => {
+  .then((res: AxiosResponse): IMoiveResponse => {
     if(res.data.Response === 'False') {
-      return [];
+      return { Search: [], totalResults: '0', Response: 'False' };
     }
-    return res.data.Search;
+    return res.data;
   })
   .catch((err: AxiosError) => {
     throw Error(err.message);

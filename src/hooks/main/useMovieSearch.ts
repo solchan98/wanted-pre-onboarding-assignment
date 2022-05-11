@@ -20,7 +20,7 @@ const useSearchMovie = (scrollToTop: Function) => {
       });
 
       const data = await getMovieListByNameAndPage(searchInfo.title, 1);
-      setMovieList(data);
+      setMovieList(data.Search);
       scrollToTop();
 
       setTimeout(() => {
