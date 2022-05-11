@@ -1,8 +1,8 @@
 import { atom } from "recoil";
 
 /* eslint-disable import/extensions */
-import { ISearchInfo } from "../types/movie";
 import { IRMovie } from "../types/apis";
+import { ISearchInfo } from "../types/movie";
 
 const INIT_MOVIE_STATE: Array<IRMovie> = [];
 const INIT_SEARCH_INFO: ISearchInfo = { title: '', page: 1, isLoading: false, isLast: false };

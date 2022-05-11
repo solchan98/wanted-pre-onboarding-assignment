@@ -1,7 +1,8 @@
-/* eslint-disable import/extensions */
 import { AxiosError, AxiosResponse } from "axios";
-import { IRMovie } from "../../types/apis";
+
 import { basicApi } from "../axios";
+/* eslint-disable import/extensions */
+import { IRMovie } from "../../types/apis";
 
 const API_KEY = '92e32667';
 

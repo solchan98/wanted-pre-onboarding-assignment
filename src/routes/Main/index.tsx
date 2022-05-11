@@ -1,14 +1,14 @@
-import { useRecoilValue } from 'recoil';
 import cx from 'classnames';
+import { useRecoilValue } from 'recoil';
 
-import useMainScrollHandler from '../../hooks/main/useMainScrollHandler';
-import { movieListState } from '../../recoil/atoms';
-import useSearchMovie from '../../hooks/main/useMovieSearch';
+import styles from './main.module.scss';
+import MainNav from '../../components/common/mainNav';
+import useScroll from '../../hooks/common/useScroll';
 import MovieItem from '../../components/common/movieItem';
 import SearchBar from '../../components/common/searchBar';
-import useScroll from '../../hooks/common/useScroll';
-import MainNav from '../../components/common/mainNav';
-import styles from './main.module.scss';
+import useSearchMovie from '../../hooks/main/useMovieSearch';
+import { movieListState } from '../../recoil/atoms';
+import useMainScrollHandler from '../../hooks/main/useMainScrollHandler';
 
 const Main = () => {
 

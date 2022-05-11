@@ -1,5 +1,5 @@
-import MainNav from '../../components/common/mainNav';
 import ms from '../main/main.module.scss';
+import MainNav from '../../components/common/mainNav';
 
 const Favorites = () => {
   return(
