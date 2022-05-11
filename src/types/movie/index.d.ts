@@ -1,7 +1,4 @@
-export interface IMoive {
+export interface ISearchInfo {
   title: string,
-  year: string,
-  imdbId: string,
-  type: string,
-  poster: string
-};
+  page: number,
+}

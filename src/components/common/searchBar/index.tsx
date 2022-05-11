@@ -1,6 +1,8 @@
 import styles from './searchBar.module.scss';
 import { Search } from '../../../assets/svgs/index';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
+import { useRecoilState } from 'recoil';
+import { searchInfoState } from '../../../recoil/atoms';
 
 interface Props {
   onSearch: Function,
@@ -8,15 +10,17 @@ interface Props {
 
 const SearchBar = ({onSearch}: Props) => {
 
-  const [inputState, setInputState] = useState('');
+  const [searchInfo, setSearchInfo] = useRecoilState(searchInfoState);
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputState(e.currentTarget.value);
+    setSearchInfo((prev) => {
+      return {...prev, title: e.currentTarget.value};
+    });
   };
 
   return(
-    <form onSubmit={(e) => onSearch(inputState, e)} >
-      <input type='text' value={inputState} onChange={onInputChange} placeholder='검색어를 입력하세요'/>
+    <form onSubmit={(e) => onSearch(searchInfo, e)} >
+      <input type='text' value={searchInfo.title} onChange={onInputChange} placeholder='검색어를 입력하세요'/>
       <button type='submit' aria-label='btn'><Search className={styles.search} /></button>
     </form>
   );
