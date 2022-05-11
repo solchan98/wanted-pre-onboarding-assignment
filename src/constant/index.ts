@@ -1,0 +1,1 @@
+export const TIME_OF_WAIE_TO_RECALL: number = 1000;

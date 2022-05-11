@@ -1,29 +1,33 @@
 import { FormEvent } from "react";
-import { SetterOrUpdater} from "recoil";
-import { getMovieListByNameAndPage } from "../../service/movie";
-// eslint-disable-next-line import/extensions
-import { IRMovie } from "../../types/apis";
+import { useSetRecoilState} from "recoil";
+
 // eslint-disable-next-line import/extensions
 import { ISearchInfo } from "../../types/movie";
+import { TIME_OF_WAIE_TO_RECALL } from "../../constant";
+import { getMovieListByNameAndPage } from "../../service/movie";
+import { movieListState, searchInfoState } from "../../recoil/atoms";
 
-interface Props {
-  setMovieList: SetterOrUpdater<IRMovie[]>,
-  setSearchInfo: SetterOrUpdater<ISearchInfo>,
-  scrollToTop: Function,
-}
+const useSearchMovie = (scrollToTop: Function) => {
 
-const useSearchMovie = ({setMovieList, setSearchInfo, scrollToTop}: Props) => {
-  const onSearchMovie = (searchInfo: ISearchInfo, e?: FormEvent<HTMLFormElement>) => {
+  const setMovieList = useSetRecoilState(movieListState);
+  const setSearchInfo = useSetRecoilState(searchInfoState);
+
+  const onSearchMovie = async (searchInfo: ISearchInfo, e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
-    if(searchInfo.title !== '') {
-      getMovieListByNameAndPage(searchInfo.title, 1)
-      .then((data) => {
-        setMovieList(data);
-        setSearchInfo((prev) => {
-          return {...prev, page: 1};
-        });
-        scrollToTop();
+    if(searchInfo.title !== '' && !searchInfo.isLoading) {
+      setSearchInfo((prev) => {
+        return {...prev, page: 1, isLoading: true};
       });
+
+      const data = await getMovieListByNameAndPage(searchInfo.title, 1);
+      setMovieList(data);
+      scrollToTop();
+
+      setTimeout(() => {
+        setSearchInfo((prev) => {
+          return {...prev, isLoading: false};
+        });
+      }, TIME_OF_WAIE_TO_RECALL);
     }
   };
 

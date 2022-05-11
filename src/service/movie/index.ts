@@ -3,7 +3,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { IRMovie } from "../../types/apis";
 import { basicApi } from "../axios";
 
-const API_KEY = '';
+const API_KEY = '92e32667';
 
 export const getMovieListByNameAndPage = (name: string, page = 1) => {
   return basicApi.get(`?apikey=${API_KEY}&s=${name}&page=${page}`)

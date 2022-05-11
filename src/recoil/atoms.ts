@@ -5,7 +5,7 @@ import { ISearchInfo } from "../types/movie";
 import { IRMovie } from "../types/apis";
 
 const INIT_MOVIE_STATE: Array<IRMovie> = [];
-const INIT_SEARCH_INFO: ISearchInfo = { title: '', page: 1, isLoading: false };
+const INIT_SEARCH_INFO: ISearchInfo = { title: '', page: 1, isLoading: false, isLast: false };
 
 export const movieListState = atom({
   key: 'movieListState',

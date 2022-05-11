@@ -1,9 +1,8 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import cx from 'classnames';
 
-import { movieListState, searchInfoState } from '../../recoil/atoms';
-// eslint-disable-next-line import/extensions
 import useMainScrollHandler from '../../hooks/main/useMainScrollHandler';
+import { movieListState } from '../../recoil/atoms';
 import useSearchMovie from '../../hooks/main/useMovieSearch';
 import MovieItem from '../../components/common/movieItem';
 import SearchBar from '../../components/common/searchBar';
@@ -13,12 +12,11 @@ import styles from './main.module.scss';
 
 const Main = () => {
 
-  const [movieList, setMovieList] = useRecoilState(movieListState);
+  const movieList = useRecoilValue(movieListState);
   const [scrollRef, onScroll, scrollToTop] = useScroll();
-  const [searchInfo, setSearchInfo] = useRecoilState(searchInfoState);
 
-  const onSearchMovie = useSearchMovie({setMovieList, setSearchInfo, scrollToTop});
-  const onMainScrollHandler = useMainScrollHandler({searchInfo, setMovieList, setSearchInfo});
+  const onSearchMovie = useSearchMovie(scrollToTop);
+  const onMainScrollHandler = useMainScrollHandler();
 
   return(
     <section>
