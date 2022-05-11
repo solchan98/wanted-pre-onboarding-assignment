@@ -1,3 +1,5 @@
+import { SyntheticEvent } from 'react';
+
 import styles from './movieItem.module.scss';
 import { Star } from '../../../assets/svgs';
 // eslint-disable-next-line import/extensions
@@ -11,6 +13,11 @@ const NON_IMAGE: string = 'N/A';
 const REPLACE_IMG_URL = 'https://img.cgv.co.kr/GiftStore/Product/Pc/List/15463252009160.jpg';
 
 const MovieItem = ({ data }: Props) => {
+
+  const handleImageError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = REPLACE_IMG_URL;
+  };
+
   return(
     <section 
       className={styles.movieItem} 
@@ -20,6 +27,7 @@ const MovieItem = ({ data }: Props) => {
       <img 
         src={data.Poster !== NON_IMAGE ? data.Poster : REPLACE_IMG_URL}
         alt='moive_poster'
+        onError={handleImageError}
       />
       <div className={styles.moiveInfo}>
         <strong>{data.Title}</strong>
