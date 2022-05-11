@@ -1,21 +1,30 @@
 import styles from './movieItem.module.scss';
 import { Star } from '../../../assets/svgs';
+// eslint-disable-next-line import/extensions
+import { IRMovie } from '../../../types/apis';
 
-const MovieItem = () => {
+interface Props {
+  data: IRMovie,
+}
+
+const NON_IMAGE: string = 'N/A';
+const REPLACE_IMG_URL = 'https://img.cgv.co.kr/GiftStore/Product/Pc/List/15463252009160.jpg';
+
+const MovieItem = ({ data }: Props) => {
   return(
     <section 
       className={styles.movieItem} 
       role="button" 
-      tabIndex={0} // TODO onClick() - 즐겨찾기 추가 혹은 제거 모달 이벤트
+      tabIndex={0} // TODO +onClick() - 즐겨찾기 추가 혹은 제거 모달 이벤트
     >
       <img 
-        src='https://m.media-amazon.com/images/M/MV5BYTQwNDE5ZjMtNmNkNi00Y2VkLTllNzktMzNjMjYzNThmMmQ3XkEyXkFqcGdeQXVyMTYwNjUwODU@._V1_SX300.jpg' 
+        src={data.Poster !== NON_IMAGE ? data.Poster : REPLACE_IMG_URL}
         alt='moive_poster'
       />
       <div className={styles.moiveInfo}>
-        <strong>Fight club</strong>
-        <p>Year: 2019</p>
-        <p>Type: movie</p>
+        <strong>{data.Title}</strong>
+        <p>{`Year: ${data.Year}`}</p>
+        <p>{`Type: ${data.Type}`}</p>
       </div>
       <Star />
     </section>
