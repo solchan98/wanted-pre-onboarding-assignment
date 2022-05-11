@@ -1,10 +1,11 @@
-/* eslint-disable import/extensions */
 import { atom } from "recoil";
-import { IRMovie } from "../types/apis";
-import { ISearchInfo } from "../types/movie";
 
-export const INIT_MOVIE_STATE: Array<IRMovie> = [];
-const INIT_SEARCH_INFO: ISearchInfo = { title: '', page: 1 };
+/* eslint-disable import/extensions */
+import { ISearchInfo } from "../types/movie";
+import { IRMovie } from "../types/apis";
+
+const INIT_MOVIE_STATE: Array<IRMovie> = [];
+const INIT_SEARCH_INFO: ISearchInfo = { title: '', page: 1, isLoading: false };
 
 export const movieListState = atom({
   key: 'movieListState',

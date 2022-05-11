@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+
 import { Favorites, Home } from "../../../assets/svgs";
 import styles from './mainNav.module.scss';
 

@@ -1,8 +1,9 @@
-import styles from './searchBar.module.scss';
-import { Search } from '../../../assets/svgs/index';
 import { ChangeEvent } from 'react';
 import { useRecoilState } from 'recoil';
+
 import { searchInfoState } from '../../../recoil/atoms';
+import { Search } from '../../../assets/svgs/index';
+import styles from './searchBar.module.scss';
 
 interface Props {
   onSearch: Function,

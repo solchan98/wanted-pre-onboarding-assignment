@@ -9,7 +9,7 @@ const useScroll = (): ReturnTypes => {
     const currentScroll = e.currentTarget.scrollTop;
     const mainClientHeight = scrollRef.current?.clientHeight || 0;
     const mainClientScrollHeight = scrollRef.current?.scrollHeight || 0;
-    if(currentScroll === mainClientScrollHeight - mainClientHeight) {
+    if(currentScroll >= mainClientScrollHeight - mainClientHeight - 100) { // 마지막 아이템 반 정도 보이는 수준
       handler();
     }
     // [3] = [1] + [2]

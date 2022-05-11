@@ -14,6 +14,6 @@ export const getMovieListByNameAndPage = (name: string, page = 1) => {
     return res.data.Search;
   })
   .catch((err: AxiosError) => {
-    throw Error('error');
+    throw Error(err.message);
   });
 };
