@@ -12,7 +12,6 @@ const useScroll = (): ReturnTypes => {
     if(currentScroll >= mainClientScrollHeight - mainClientHeight - 100) { // 마지막 아이템 반 정도 보이는 수준
       handler();
     }
-    // [3] = [1] + [2]
   };
 
   const scrollToTop = () => scrollRef.current && scrollRef.current.scrollTo(0, 0);

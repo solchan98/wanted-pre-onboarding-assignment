@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100&family=Koulen&display=swap');
 
 section {
+  position: relative;
   width: 360px;
   height: 720px;
   // border: 1px solid black;
@@ -14,7 +15,7 @@ section {
     width: inherit;
     height: 120px;
     padding: 30px 20px 0;
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(243, 231, 231);
     border-radius: 40px 40px 0 0;
 
     h2 {
@@ -28,7 +29,7 @@ section {
     box-sizing: border-box;
     display: flex;
     width: inherit;
-    height: 540px;
+    height: 560px;
     padding: 0 20px;
     overflow-y: scroll;
     background-color: rgb(247, 247, 247);
@@ -43,7 +44,7 @@ section {
   }
 
   .on {
-    background-color: rgb(218, 181, 181);
+    background-color: rgb(243, 231, 231);
   }
 
   ::-webkit-scrollbar {

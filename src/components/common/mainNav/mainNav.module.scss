@@ -4,40 +4,24 @@ nav {
   align-items: center;
   justify-content: space-around;
   width: inherit;
-  height: 60px;
+  height: 20px;
   padding: 20px;
-  background-color: rgb(247, 247, 247);
+  background-color: rgb(243, 231, 231);
   border-radius: 0 0 40px 40px;
 
   .navLinkOn {
     svg {
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 28px;
       fill: #000000;
     }
   }
 
   .navLinkOff {
     svg {
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 28px;
       fill: #a8a8a8;
     }
   }
-
-  // .navLinkOn {
-  //   svg {
-  //     width: 36px;
-  //     height: 36px;
-  //     fill: #a8a8a8;
-  //   }
-  // }
-
-  // .navLinkOff {
-  //   svg {
-  //     width: 36px;
-  //     height: 36px;
-  //     fill: #000;
-  //   }
-  // }
 }

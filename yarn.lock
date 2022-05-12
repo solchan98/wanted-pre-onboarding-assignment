@@ -8391,6 +8391,11 @@ statuses@2.0.1:
   resolved "https://registry.npmjs.org/statuses/-/statuses-1.5.0.tgz"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
+storejs@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/storejs/-/storejs-2.0.1.tgz#3424f4c88ff979e3962413ce60ea43fd660a9657"
+  integrity sha512-hN/Rb7noRSxwTMdO1ksotketRqAy8fyzwXIXe0wPurV1YzlUVdgL0wC9eSOPpzCLiCPSoHICeX4paFrzigeGeg==
+
 string-length@^4.0.1:
   version "4.0.2"
   resolved "https://registry.npmjs.org/string-length/-/string-length-4.0.2.tgz"
