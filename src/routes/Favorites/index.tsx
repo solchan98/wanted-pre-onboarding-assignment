@@ -4,47 +4,18 @@ import ms from '../main/main.module.scss';
 import MainNav from '../../components/common/mainNav';
 import useScroll from '../../hooks/common/useScroll';
 import MovieItem from '../../components/common/movieItem';
-import { useEffect, useRef, useState } from 'react';
+import useDragAndDrop from '../../hooks/favorites/useDragAndDrop';
+import { useEffect, useState } from 'react';
 import { IFavoriteMovie, IFavoriteMovies } from '../../types/movie/index.d';
 
 const Favorites = () => {
 
   const [favoritMovieList, setFavoriteMovieList] = useState<IFavoriteMovie[]>([]);
   const [scrollRef] = useScroll();
-  
+  const [onDragStart, onDragEnd, onDragEnter, onDragOver] = useDragAndDrop(favoritMovieList, setFavoriteMovieList);
 
-  const interSectElId = useRef<number>(0);
-  const clickElId = useRef<number>(0);
-
-  const getInterSectionElementIndex = (index: number) => {
-    return favoritMovieList.findIndex((movie) => movie.index  === index);
-  };
-  const onDragStart = (e: any) => {
-    const { id } = e.currentTarget.dataset;
-    clickElId.current = getInterSectionElementIndex(Number(id));
-  };
-  const onDragEnd = () => {
-
-    const localMovieList = store.get('movie_favorites');
-    setFavoriteMovieList((prev) => {
-      const printData = [...prev];
-      const grapItem = printData[clickElId.current];
-      printData.splice(clickElId.current, 1);
-      printData.splice(interSectElId.current, 0, grapItem);
-      printData.forEach((movie, index) => { localMovieList[movie.imdbID].index = index; });
-      store.set('movie_favorites', localMovieList);
-      return printData;
-    });
-  };
-  const onDragEnter = (e: any) => {
-    const { id } = e.currentTarget.dataset;
-    interSectElId.current = getInterSectionElementIndex(Number(id));
-  };
-
-
-  
   useEffect(() => {
-    const localMovieData: IFavoriteMovies = store.get('movie_favorites');
+    const localMovieData: IFavoriteMovies = store.get(String(process.env.REACT_APP_LOCAL_FAVORITES_KEY));
     const localMovieList = localMovieData ? Object.keys(localMovieData).map((key) => localMovieData[key]) : [];
     // localMovieList 정렬 
     localMovieList.sort((a, b) => {
@@ -61,7 +32,7 @@ const Favorites = () => {
         <h2>FAVORITES</h2>
       </header>
       <main ref={scrollRef} className={ms.main}>
-        <ul>
+        <ul onDragOver={onDragOver}>
           { favoritMovieList.length
             ? favoritMovieList.map((value, index) => 
               <li
@@ -70,8 +41,7 @@ const Favorites = () => {
                 onDragStart={onDragStart}
                 onDragEnd={onDragEnd}
                 onDragEnter={onDragEnter}
-
-                onDragOver={(e) => e.preventDefault()}
+                onDragOver={onDragOver}
                 key={`favorite_movie_${value.imdbID}_${index + 1}`}>
                 <MovieItem data={value} openModal={() => {}} />
               </li>)

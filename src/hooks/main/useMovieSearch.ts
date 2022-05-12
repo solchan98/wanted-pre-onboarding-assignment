@@ -20,7 +20,7 @@ const useSearchMovie = (scrollToTop: Function) => {
         return {...prev, page: 1, isLoading: true};
       });
 
-      const localFavoriteMovieList = store.get('movie_favorites') || {};
+      const localFavoriteMovieList = store.get(String(process.env.REACT_APP_LOCAL_FAVORITES_KEY)) || {};
 
       getMovieListByNameAndPage(searchInfo.title, 1)
       .then((data) => {
