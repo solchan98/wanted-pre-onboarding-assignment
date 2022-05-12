@@ -7,6 +7,10 @@ export interface ISearchInfo {
   totalResult: number, 
 }
 
+export interface IFavoriteMovie extends IRMovie {
+  index: number,
+}
+
 export interface IFavoriteMovies {
-  [key: string]: IRMovie,
+  [key: string]: IFavoriteMovie,
 }

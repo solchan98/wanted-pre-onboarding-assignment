@@ -22,6 +22,10 @@ const MovieItem = ({ data, openModal }: Props) => {
       role="button" 
       tabIndex={0}
       onClick={() => openModal(data)}
+      draggable
+      onDrag={(e) => {
+        console.log(e.currentTarget)
+      }}
     >
       <img 
         src={data.Poster !== NON_IMAGE ? data.Poster : REPLACE_IMG_URL}

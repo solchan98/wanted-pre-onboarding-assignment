@@ -25,9 +25,12 @@ const Main = () => {
   /** Add Favorites Handler */
   const addFavorites = (movieF: IRMovie) => {
     const localFavoriteMovieList = store.get('movie_favorites') || {};
+    const localFavoriteMovieCnt = store.get('movie_last_index') || 0;
+
     const isIn: boolean = Object.keys(localFavoriteMovieList).includes(movieF.imdbID);
     if(!isIn) {
-      localFavoriteMovieList[movieF.imdbID] = {...movieF, isFavorite: true};
+      localFavoriteMovieList[movieF.imdbID] = {...movieF, isFavorite: true, index: localFavoriteMovieCnt + 1};
+      store.set('movie_last_index', localFavoriteMovieCnt + 1);
       store.set('movie_favorites', localFavoriteMovieList);
       setMovieList((prev) => prev.map((item) => (item.imdbID === movieF.imdbID) ? { ...item, isFavorite: true}  : item));
     }

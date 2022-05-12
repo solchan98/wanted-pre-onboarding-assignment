@@ -5,18 +5,25 @@ import MainNav from '../../components/common/mainNav';
 import useScroll from '../../hooks/common/useScroll';
 import MovieItem from '../../components/common/movieItem';
 import { useEffect, useState } from 'react';
-import { IFavoriteMovies } from '../../types/movie/index.d';
+import { IFavoriteMovie, IFavoriteMovies } from '../../types/movie/index.d';
 
 const Favorites = () => {
 
-  const [favoritMovieList, setFavoriteMovieList] = useState<IFavoriteMovies>({});
+  const [favoritMovieList, setFavoriteMovieList] = useState<IFavoriteMovie[]>([]);
   const [scrollRef] = useScroll();
   
   useEffect(() => {
-    setFavoriteMovieList(store.get('movie_favorites'));
+    const localMovieData: IFavoriteMovies = store.get('movie_favorites');
+    const localMovieList = localMovieData ? Object.keys(localMovieData).map((key) => localMovieData[key]) : [];
+    // localMovieList 정렬 
+    localMovieList.sort((a, b) => {
+      if(a.index < b.index) return -1;
+      if(a.index > b.index) return 1;
+      return 0;
+    });
+    setFavoriteMovieList(localMovieList);
   }, []);
-
-
+  
   return(
     <section> 
       <header>
@@ -24,10 +31,10 @@ const Favorites = () => {
       </header>
       <main ref={scrollRef} className={ms.main}>
         <ul>
-          { favoritMovieList 
-            ? Object.keys(favoritMovieList).map((key, index) => 
-              <li key={`main_movie_${favoritMovieList[key].imdbID}_${index + 1}`}>
-                <MovieItem data={favoritMovieList[key]} openModal={() => {}}/>
+          { favoritMovieList.length
+            ? favoritMovieList.map((value, index) => 
+              <li key={`favorite_movie_${value.imdbID}_${index + 1}`}>
+                <MovieItem data={value} openModal={() => {}} />
               </li>)
             : '즐겨찾기가 존재하지 않습니다.'
           }
