@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 
 // eslint-disable-next-line import/extensions
 import { IRMovie } from "../../types/apis";
 
-type ReturnType = [boolean, IRMovie, Function, Function];
+type ReturnType = [boolean, IRMovie, Function, MouseEventHandler<HTMLButtonElement>];
 
-const useModal = (): ReturnType => {
 
-  const [isShowModal, setIsShowModal] = useState(true);
+const useModal = (closeHandler: Function): ReturnType => {
+
+  const [isShowModal, setIsShowModal] = useState(false);
   const [selectData, setSelectData] = useState({} as IRMovie);
 
   const openModal = (movie: IRMovie) => {
@@ -15,8 +16,8 @@ const useModal = (): ReturnType => {
     setIsShowModal(true);
   };
 
-  const closeModal = (handler: Function) => {
-    handler();
+  const closeModal = () => {
+    closeHandler();
     setIsShowModal(false);
   };
 

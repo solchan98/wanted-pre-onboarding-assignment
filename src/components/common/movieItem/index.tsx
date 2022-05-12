@@ -1,17 +1,15 @@
-import { MouseEventHandler, SyntheticEvent } from 'react';
+import { SyntheticEvent } from 'react';
 
 import styles from './movieItem.module.scss';
 import { Star } from '../../../assets/svgs';
 // eslint-disable-next-line import/extensions
 import { IRMovie } from '../../../types/apis';
+import { REPLACE_IMG_URL, NON_IMAGE } from '../../../constant';
 
 interface Props {
   data: IRMovie,
   openModal: Function,
 }
-
-const NON_IMAGE: string = 'N/A';
-const REPLACE_IMG_URL = 'https://img.cgv.co.kr/GiftStore/Product/Pc/List/15463252009160.jpg';
 
 const MovieItem = ({ data, openModal }: Props) => {
 
@@ -36,7 +34,7 @@ const MovieItem = ({ data, openModal }: Props) => {
         <p>{`Year: ${data.Year}`}</p>
         <p>{`Type: ${data.Type}`}</p>
       </div>
-      <Star />
+      { data.isFavorite && <Star />}
     </section>
   );
 };

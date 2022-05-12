@@ -10,10 +10,46 @@
   main {
     position: absolute;
     top: calc(50% - 80px);
-    left: calc(50% - 160px);
-    width: 320px;
+    left: calc(50% - 140px);
+    width: 280px;
     height: 160px;
+    padding: 10px;
     background-color: rgb(255, 255, 255);
     border-radius: 40px;
+
+    .content {
+      position: relative;
+      display: flex;
+      width: inherit;
+
+      img {
+        box-sizing: border-box;
+        height: 140px;
+        border-radius: 20px;
+      }
+
+      aside {
+        box-sizing: border-box;
+        width: 160px;
+        padding: 0 0 0 10px;
+
+        > p {
+          width: 160px;
+          overflow: hidden;
+          font-size: 20px;
+          font-weight: bold;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        button {
+          width: 120px;
+          height: 32px;
+          cursor: pointer;
+          border: 1px solid black;
+          border-radius: 20px;
+        }
+      }
+    }
   }
 }

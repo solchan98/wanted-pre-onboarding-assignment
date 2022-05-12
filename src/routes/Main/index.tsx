@@ -20,7 +20,7 @@ const Main = () => {
   const onSearchMovie = useSearchMovie(scrollToTop);
   const onMainScrollHandler = useMainScrollHandler();
 
-  const [isShowModal, data, openModal, closeModal] = useModal();
+  const [isShowModal, data, openModal, closeModal] = useModal(() => {});
 
   return(
     <section>
