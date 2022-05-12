@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useRef } from 'react';
 
 import styles from './movieItem.module.scss';
 import { Star } from '../../../assets/svgs';
@@ -23,9 +23,6 @@ const MovieItem = ({ data, openModal }: Props) => {
       tabIndex={0}
       onClick={() => openModal(data)}
       draggable
-      onDrag={(e) => {
-        console.log(e.currentTarget)
-      }}
     >
       <img 
         src={data.Poster !== NON_IMAGE ? data.Poster : REPLACE_IMG_URL}
