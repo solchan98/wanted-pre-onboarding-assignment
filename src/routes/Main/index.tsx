@@ -1,5 +1,4 @@
 import cx from 'classnames';
-import store from 'storejs';
 import { useRecoilState } from 'recoil';
 
 import Modal from '../../components/common/modal';
@@ -9,9 +8,9 @@ import useModal from '../../hooks/common/useModal';
 import useScroll from '../../hooks/common/useScroll';
 import MovieItem from '../../components/common/movieItem';
 import SearchBar from '../../components/common/searchBar';
-import { IRMovie } from '../../types/apis/index.d';
 import useSearchMovie from '../../hooks/main/useMovieSearch';
 import { movieListState } from '../../recoil/atoms';
+import useFavoriteHandle from '../../hooks/common/useFavoriteHandle';
 import useMainScrollHandler from '../../hooks/main/useMainScrollHandler';
 
 const Main = () => {
@@ -22,21 +21,10 @@ const Main = () => {
   const onSearchMovie = useSearchMovie(scrollToTop);
   const onMainScrollHandler = useMainScrollHandler();
 
-  /** Add Favorites Handler */
-  const addFavorites = (movieF: IRMovie) => {
-    const localFavoriteMovieList = store.get(String(process.env.REACT_APP_LOCAL_FAVORITES_KEY)) || {};
-    const localFavoriteMovieCnt = store.get(String(process.env.REACT_APP_LOCAL_FAVORITE_LAST_INDEX)) || 0;
+  const { addFavorites, removeFavorites } = useFavoriteHandle({ setMovieList });
 
-    const isIn: boolean = Object.keys(localFavoriteMovieList).includes(movieF.imdbID);
-    if(!isIn) {
-      localFavoriteMovieList[movieF.imdbID] = {...movieF, isFavorite: true, index: localFavoriteMovieCnt + 1};
-      store.set(String(process.env.REACT_APP_LOCAL_FAVORITE_LAST_INDEX), localFavoriteMovieCnt + 1);
-      store.set(String(process.env.REACT_APP_LOCAL_FAVORITES_KEY), localFavoriteMovieList);
-      setMovieList((prev) => prev.map((item) => (item.imdbID === movieF.imdbID) ? { ...item, isFavorite: true}  : item));
-    }
-  };
+  const [isShowModal, data, openModal, closeModal] = useModal({addFavorites, removeFavorites});
 
-  const [isShowModal, data, openModal, closeModal] = useModal(addFavorites);
 
   return(
     <section>

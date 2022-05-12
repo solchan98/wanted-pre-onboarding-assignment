@@ -3,8 +3,12 @@ import { IRMovie } from "../../types/apis/index.d";
 
 type ReturnType = [boolean, IRMovie, Function, (moive: IRMovie) => void];
 
+interface CloseHandler {
+  addFavorites: (movie: IRMovie) => void,
+  removeFavorites: (movie: IRMovie) => void,
+}
 
-const useModal = (closeHandler: (moive: IRMovie) => void): ReturnType => {
+const useModal = ({ addFavorites, removeFavorites }: CloseHandler): ReturnType => {
 
   const [isShowModal, setIsShowModal] = useState(false);
   const [selectData, setSelectData] = useState({} as IRMovie);
@@ -15,7 +19,11 @@ const useModal = (closeHandler: (moive: IRMovie) => void): ReturnType => {
   };
 
   const closeModal = (data: IRMovie) => {
-    closeHandler(data);
+    if(selectData.isFavorite) {
+      removeFavorites(data);
+    } else {
+      addFavorites(data);
+    }
     setIsShowModal(false);
   };
 

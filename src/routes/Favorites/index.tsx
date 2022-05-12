@@ -1,18 +1,30 @@
 import store from 'storejs';
+import { useSetRecoilState } from 'recoil';
+import { useEffect, useState } from 'react';
 
 import ms from '../main/main.module.scss';
+import Modal from '../../components/common/modal';
 import MainNav from '../../components/common/mainNav';
+import useModal from '../../hooks/common/useModal';
 import useScroll from '../../hooks/common/useScroll';
 import MovieItem from '../../components/common/movieItem';
 import useDragAndDrop from '../../hooks/favorites/useDragAndDrop';
-import { useEffect, useState } from 'react';
+import { movieListState } from '../../recoil/atoms';
+import useFavoriteHandle from '../../hooks/common/useFavoriteHandle';
 import { IFavoriteMovie, IFavoriteMovies } from '../../types/movie/index.d';
 
 const Favorites = () => {
 
   const [favoritMovieList, setFavoriteMovieList] = useState<IFavoriteMovie[]>([]);
+  const setMovieList = useSetRecoilState(movieListState);
+  
   const [scrollRef] = useScroll();
   const [onDragStart, onDragEnd, onDragEnter, onDragOver] = useDragAndDrop(favoritMovieList, setFavoriteMovieList);
+
+  const { addFavorites, removeFavorites } = useFavoriteHandle({ setMovieList, setFavoriteMovieList });
+
+  const [isShowModal, data, openModal, closeModal] = useModal({addFavorites, removeFavorites});
+
 
   useEffect(() => {
     const localMovieData: IFavoriteMovies = store.get(String(process.env.REACT_APP_LOCAL_FAVORITES_KEY));
@@ -43,13 +55,14 @@ const Favorites = () => {
                 onDragEnter={onDragEnter}
                 onDragOver={onDragOver}
                 key={`favorite_movie_${value.imdbID}_${index + 1}`}>
-                <MovieItem data={value} openModal={() => {}} />
+                <MovieItem data={value} openModal={openModal} />
               </li>)
             : '즐겨찾기가 존재하지 않습니다.'
           }
         </ul>
       </main>
       <footer><MainNav /></footer>
+      { isShowModal && <Modal close={closeModal} data={data}/> }
     </section>
   );
 };
