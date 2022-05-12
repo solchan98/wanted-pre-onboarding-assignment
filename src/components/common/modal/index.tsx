@@ -1,13 +1,16 @@
 import cs from './modal.module.scss';
+// eslint-disable-next-line import/extensions
+import { IRMovie } from '../../../types/apis';
 
 interface Props {
+  data: IRMovie,
   close: Function,
 }
-const Modal = ({close}: Props) => {
+const Modal = ({data, close}: Props) => {
   return(
     <section className={cs.backBoard}>
       <main>
-        즐겨찾기 모달
+        {data.Title}
         <button type="button" onClick={() => close(() => {})}>닫기</button>
       </main>
     </section>

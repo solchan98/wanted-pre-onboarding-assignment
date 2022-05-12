@@ -7,7 +7,7 @@ import { IRMovie } from '../../../types/apis';
 
 interface Props {
   data: IRMovie,
-  openModal: MouseEventHandler<Element>,
+  openModal: Function,
 }
 
 const NON_IMAGE: string = 'N/A';
@@ -24,7 +24,7 @@ const MovieItem = ({ data, openModal }: Props) => {
       className={styles.movieItem} 
       role="button" 
       tabIndex={0}
-      onClick={openModal}
+      onClick={() => openModal(data)}
     >
       <img 
         src={data.Poster !== NON_IMAGE ? data.Poster : REPLACE_IMG_URL}

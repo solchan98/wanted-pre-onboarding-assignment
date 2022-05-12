@@ -20,7 +20,7 @@ const Main = () => {
   const onSearchMovie = useSearchMovie(scrollToTop);
   const onMainScrollHandler = useMainScrollHandler();
 
-  const [isShowModal, openModal, closeModal] = useModal();
+  const [isShowModal, data, openModal, closeModal] = useModal();
 
   return(
     <section>
@@ -40,7 +40,7 @@ const Main = () => {
         </ul>
       </main>
       <footer><MainNav /></footer>
-      { isShowModal && <Modal close={closeModal}/> }
+      { isShowModal && <Modal close={closeModal} data={data}/> }
     </section>
   );
 };
