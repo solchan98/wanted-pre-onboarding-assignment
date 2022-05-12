@@ -2,8 +2,7 @@ import { SyntheticEvent } from 'react';
 
 import styles from './movieItem.module.scss';
 import { Star } from '../../../assets/svgs';
-// eslint-disable-next-line import/extensions
-import { IRMovie } from '../../../types/apis';
+import { IRMovie } from '../../../types/apis/index.d';
 import { REPLACE_IMG_URL, NON_IMAGE } from '../../../constant';
 
 interface Props {

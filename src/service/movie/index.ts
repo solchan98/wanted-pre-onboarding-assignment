@@ -1,8 +1,7 @@
 import { AxiosError, AxiosResponse } from "axios";
 
 import { basicApi } from "../axios";
-/* eslint-disable import/extensions */
-import { IMoiveResponse } from "../../types/apis";
+import { IMoiveResponse } from "../../types/apis/index.d";
 
 const API_KEY = '';
 

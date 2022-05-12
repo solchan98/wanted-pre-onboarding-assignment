@@ -1,7 +1,7 @@
 export interface IRMovie {
   Title: string,
   Year: string,
-  imdbId: string,
+  imdbID: string,
   Type: string,
   Poster: string,
   isFavorite: boolean,

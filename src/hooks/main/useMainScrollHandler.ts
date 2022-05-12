@@ -15,14 +15,17 @@ const useMainScrollHandler = () => {
         return {...prev, isLoading: true};
       });
 
-      const data = await getMovieListByNameAndPage(searchInfo.title, searchInfo.page + 1);
-      setMovieList((prev) => [...prev, ...data.Search]);
-
-      setTimeout(() => {
-        setSearchInfo((prev) => {
-          return {...prev, page: searchInfo.page + 1, isLoading: false, totalResult: Number(data.totalResults)};
-        });
-      }, TIME_OF_WAIE_TO_RECALL);
+      getMovieListByNameAndPage(searchInfo.title, searchInfo.page + 1)
+      .then((data) => {
+        setMovieList((prev) => [...prev, ...data.Search]);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setSearchInfo((prev) => {
+            return {...prev, page: searchInfo.page + 1, isLoading: false};
+          });
+        }, TIME_OF_WAIE_TO_RECALL);
+      });
     }
   };
 
