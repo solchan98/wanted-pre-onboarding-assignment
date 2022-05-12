@@ -27,7 +27,7 @@ const Main = () => {
     const localFavoriteMovieList = store.get('movie_favorites') || {};
     const isIn: boolean = Object.keys(localFavoriteMovieList).includes(movieF.imdbID);
     if(!isIn) {
-      localFavoriteMovieList[movieF.imdbID] = movieF;
+      localFavoriteMovieList[movieF.imdbID] = {...movieF, isFavorite: true};
       store.set('movie_favorites', localFavoriteMovieList);
       setMovieList((prev) => prev.map((item) => (item.imdbID === movieF.imdbID) ? { ...item, isFavorite: true}  : item));
     }
