@@ -1,0 +1,19 @@
+.backBoard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 360px;
+  height: 720px;
+  background-color: rgba($color: #000000, $alpha: 60%);
+
+  main {
+    position: absolute;
+    top: calc(50% - 80px);
+    left: calc(50% - 160px);
+    width: 320px;
+    height: 160px;
+    background-color: aqua;
+    border-radius: 40px;
+  }
+}

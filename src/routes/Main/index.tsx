@@ -9,6 +9,8 @@ import SearchBar from '../../components/common/searchBar';
 import useSearchMovie from '../../hooks/main/useMovieSearch';
 import { movieListState } from '../../recoil/atoms';
 import useMainScrollHandler from '../../hooks/main/useMainScrollHandler';
+import Modal from '../../components/common/modal';
+import useModal from '../../hooks/common/useModal';
 
 const Main = () => {
 
@@ -17,6 +19,8 @@ const Main = () => {
 
   const onSearchMovie = useSearchMovie(scrollToTop);
   const onMainScrollHandler = useMainScrollHandler();
+
+  const [isShowModal, openModal, closeModal] = useModal();
 
   return(
     <section>
@@ -29,13 +33,14 @@ const Main = () => {
           { movieList.length !== 0 
             ? movieList.map((movie, index) => 
               <li key={`main_movie_${movie.imdbId}_${index + 1}`}>
-                <MovieItem data={movie} />
+                <MovieItem data={movie} openModal={openModal}/>
               </li>)
             : '검색결과가 없습니다.'
           }
         </ul>
       </main>
       <footer><MainNav /></footer>
+      { isShowModal && <Modal close={closeModal}/> }
     </section>
   );
 };
