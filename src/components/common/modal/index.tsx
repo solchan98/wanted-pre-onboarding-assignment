@@ -17,7 +17,7 @@ const Modal = ({data, close}: Props) => {
 
   return(
     <section className={cs.backBoard}>
-      <main>
+      <main className={cs.modalMain}>
         <div className={cs.content}>
           <img 
             src={data.Poster !== NON_IMAGE ? data.Poster : REPLACE_IMG_URL}

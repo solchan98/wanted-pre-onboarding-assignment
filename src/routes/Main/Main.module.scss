@@ -1,21 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100&family=Koulen&display=swap');
 
-section {
+.mainSection {
   position: relative;
   width: 360px;
   height: 720px;
-  // border: 1px solid black;
+  background-color: #e9effb;
   border-radius: 40px;
 
   header {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     width: inherit;
     height: 120px;
     padding: 30px 20px 0;
-    background-color: rgb(243, 231, 231);
+    background-color: #e9effb;
     border-radius: 40px 40px 0 0;
 
     h2 {
@@ -29,10 +30,9 @@ section {
     box-sizing: border-box;
     display: flex;
     width: inherit;
-    height: 560px;
-    padding: 0 20px;
+    height: 540px;
     overflow-y: scroll;
-    background-color: rgb(247, 247, 247);
+    background-color: #e9effb;
     transition: 0.5s;
 
     > ul {
@@ -41,10 +41,16 @@ section {
       margin: 10px 0 0;
       list-style: none;
     }
-  }
 
-  .on {
-    background-color: rgb(243, 231, 231);
+    .empty {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: inherit;
+      height: inherit;
+    }
   }
 
   ::-webkit-scrollbar {

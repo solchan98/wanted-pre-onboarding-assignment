@@ -31,8 +31,10 @@ const MovieItem = ({ data, openModal }: Props) => {
       />
       <div className={styles.moiveInfo}>
         <strong>{data.Title}</strong>
-        <p>{`Year: ${data.Year}`}</p>
-        <p>{`Type: ${data.Type}`}</p>
+        {/* <p>{`Year: ${data.Year}`}</p> */}
+        {/* <p>{`Type: ${data.Type}`}</p> */}
+        <p>{data.Year}</p>
+        <p>{data.Type}</p>
       </div>
       { data.isFavorite && <Star />}
     </section>
