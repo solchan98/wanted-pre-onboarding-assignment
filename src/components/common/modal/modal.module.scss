@@ -14,7 +14,7 @@
     width: 280px;
     height: 160px;
     padding: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: #c9d7f5;
     border-radius: 40px;
 
     .content {
@@ -33,13 +33,16 @@
 
       aside {
         box-sizing: border-box;
-        width: 160px;
-        padding: 0 0 0 5px;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        width: 170px;
+        padding: 0 20px;
+        overflow: hidden;
 
         > p {
-          width: 160px;
           overflow: hidden;
-          font-size: 20px;
+          font-size: 18px;
           font-weight: bold;
           text-overflow: ellipsis;
           white-space: nowrap;

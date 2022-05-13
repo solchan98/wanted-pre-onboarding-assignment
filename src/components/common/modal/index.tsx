@@ -27,6 +27,7 @@ const Modal = ({data, close}: Props) => {
           <aside>
             <p>{data.Title}</p>
             <button type="button" onClick={() => close(data)}>{`즐겨찾기 ${data.isFavorite ? '삭제' : '추가'}`}</button>
+            <button type="button" onClick={() => close()}>취소</button>
           </aside>
         </div>
       </main>

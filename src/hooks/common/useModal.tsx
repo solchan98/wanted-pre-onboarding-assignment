@@ -18,8 +18,10 @@ const useModal = ({ addFavorites, removeFavorites }: CloseHandler): ReturnType =
     setIsShowModal(true);
   };
 
-  const closeModal = (data: IRMovie) => {
-    if(selectData.isFavorite) {
+  const closeModal = (data?: IRMovie) => {
+    if(data === undefined) {
+      setIsShowModal(false);
+    } else if(selectData.isFavorite) {
       removeFavorites(data);
     } else {
       addFavorites(data);

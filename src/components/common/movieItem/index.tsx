@@ -1,4 +1,4 @@
-import { SyntheticEvent, useRef } from 'react';
+import { SyntheticEvent } from 'react';
 
 import styles from './movieItem.module.scss';
 import { Star } from '../../../assets/svgs';
