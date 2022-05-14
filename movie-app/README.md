@@ -1,6 +1,18 @@
 # Movie App
 
 본 프로젝트는 원티드 프론트엔드 프리온보딩 1차 개인과제 (그립컴퍼니 기업과제)입니다.  
+
+## 배포 링크
+[그립컴퍼니 - 무비앱](https://solchan.shop/movie-app/main)  
+- 배포사이트는 본 레포지토리의 코드를 일부 수정하여 통합 배포 저장소 코드에 넣어 배포된 사이트입니다.
+따라서 url 등이 다를 수 있습니다.
+- 본 저장소를 클론하여 다음의 커맨드를 수행하면 직접 구동 가능합니다.
+```shell
+yarn 또는 npm install
+
+yarn start 또는 npm run start
+```
+
   
 ## 요구사항
 - 기본적으로 무비 검색 및 즐겨찾기 기능을 제공한다.
@@ -30,7 +42,6 @@ localStorage를 사용하면서 데이터 접근성을 위해 다음과 같이 �
 (iddbId가 고유ID는 아닌 것으로 확인하였으나 API 설계가 잘못된 것이라고 생각한다.)
 
 ```json
-// In localStorage
 {
   "FAVORITES_KEY": {
     ["imdbId"]: {
