@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# Movie App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+본 프로젝트는 원티드 프론트엔드 프리온보딩 1차 개인과제 (그립컴퍼니 기업과제)입니다.  
+  
+## 요구사항
+- 기본적으로 무비 검색 및 즐겨찾기 기능을 제공한다.
+- 검색 키워드로 영화를 조회할 수 있다.
+  - 기본적으로 10개씩 조회되며, 무한 스크롤을 통해 계속해서 불러올 수 있다.
+- 영화 정보는 다음과 같다.
+  - 영화 포스터 이미지
+  - 영화 제목
+  - 영화 연도
+  - 타입
+- 영화는 즐겨찾기로 등록이 가능하며, 즐겨찾기 탭을 통해 확인 가능하다.
+  - 즐겨찾기는 한번에 모든 데이터를 랜더링한다. 
+- 즐겨찾기 목록은 드래그 앤 드롭을 제공한다.
 
-## Available Scripts
 
-In the project directory, you can run:
+## 데이터 플로우
 
-### `yarn start`
+크게 검색을 통핸 영화 리스트와 즐겨찾기 영화 리스트로 나누어 구성하였다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+영화 리스트는 검색에 따라 동적으로 변하며 새로고침 시 초기화 된다. 추가로 페이지네이션을 위해 검색 정보라는 상태가 존재하며, 간단하게 타이틀과 페이지네이션을 위한 정보 그리고 요청 상태 등의 데이터를 담는다.  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  
+즐겨찾기는 새로고침을 하여도 데이터가 남아있어야 한다. 따라서 localStorage에 저장하도록 하였다.
+localStorage를 사용하면서 데이터 접근성을 위해 다음과 같이 저장하는 방식으로 진행하였다.
 
-### `yarn test`
+배열로 하지 않고 key값으로 고유ID값을 통해 저장하여 추가적인 탐색 없이 바로 접근이 가능하다.
+(iddbId가 고유ID는 아닌 것으로 확인하였으나 API 설계가 잘못된 것이라고 생각한다.)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```json
+// In localStorage
+{
+  "FAVORITES_KEY": {
+    ["imdbId"]: {
+      "Title": "title",
+      "Poster": "...",
+      "Type": "movie",
+      "Year": "2022",
+      "imdbId": "fasd",
+      "index": 3,
+      "isFavorite": "true"
+    }
+  }
+}
+```
 
-### `yarn build`
+## 드래그 앤 드롭
+우선, 드래그 앤 드롭을 직접 구현하여 비교적 라이브러리에 비해 퀄리티가 많이 부족하다.  
+드래그 앤 드롭은 useRef를 사용하여 구현하였다.
+  
+- 두 개의 ref를 통해 드래그 중인(선택 된) 요소와 현재 마우스가 들어가 있는 요소의 인덱스를 사용한다.
+- 드래그 후, 마우스를 놓으면 무비 리스트에서 선택 된 요소의 인덱스에 있는 값을 제거한다. (제거하기 전, 미리 뽑아 둔다.)
+- 이후 마우스가 마지막으로 들어간 요소의 인덱스 위치로 넣는다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+이렇게 단순하게 배열의 값만 바꾸는 식으로 간단하게 구현하였기 때문에 애니메이션 혹은 들어갈 자리에 공백을 주는 등의 효과는 부여하지 않았다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 무한 스크롤
+무한 스크롤 또한 추가적인 라이브러리 없이 직접 구현하였다.  
+단순하게 스크롤되는 영역과 현재 스크롤 상태를 계산하여 어렵지 않게 구현하였다.
 
-### `yarn eject`
+물론.. 라이브러리를 사용하면 훨씬 자연스럽고 좋은 퍼포먼스가 나올 것이다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+처음에는 스크롤이 제일 아래까지 된 경우에 API를 호출하도록 하였다. 그런데 너무 스크롤이 자연스럽다는 느낌이 부족하여 일정 부분 스크롤이 되면 API를 호출하도록 하였다.  
+최대한 끊김 없는 부분을 찾다가 한번 호출 후 200ms 대기 후 추가 콜을 할 수 있도록 설정하였다.  
+(200ms는 대충 평균적인 스크롤 시간과 API 응답 시간을 고려하여 설정하였다.)
