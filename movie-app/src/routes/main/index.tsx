@@ -11,12 +11,13 @@ import MovieItem from '../../components/common/movieItem';
 import SearchBar from '../../components/common/searchBar';
 import NoResultImg from '../../assets/no-content.png';
 import useSearchMovie from '../../hooks/main/useMovieSearch';
-import { movieListState } from '../../recoil/atoms';
+import { movieListState, searchInfoState } from '../../recoil/atoms';
 import useMainScrollHandler from '../../hooks/main/useMainScrollHandler';
 
 const Main = () => {
 
   const movieList = useRecoilValue(movieListState);
+  const searchInfo = useRecoilValue(searchInfoState);
 
   const [scrollRef, onScroll, scrollToTop] = useScroll();
 
@@ -32,8 +33,8 @@ const Main = () => {
         <h2>MOVIES</h2>
         <SearchBar onSearch={onSearchMovie}/>
       </header>
-      <main ref={scrollRef} className={cx(styles.main)} onScroll={(e) => onScroll(e, onMainScrollHandler)}>
-        { movieList.length !== 0 ? 
+      <main ref={scrollRef} onScroll={(e) => onScroll(e, onMainScrollHandler)}>
+        { movieList.length ? 
           <ul>
             {movieList.map((movie, index) => 
               <li key={`main_movie_${movie.imdbID}_${index + 1}`}>
@@ -46,6 +47,7 @@ const Main = () => {
             <h2>검색 결과가 없습니다.</h2>
           </div>
         }
+        { searchInfo.isLoading && <div className={styles.loading} >...로딩중</div> }
       </main>
       <footer><MainNav /></footer>
       { isShowModal && <Modal close={closeModal} data={data}/> }

@@ -33,7 +33,6 @@
     height: 540px;
     overflow-y: scroll;
     background-color: #e9effb;
-    transition: 0.5s;
 
     > ul {
       width: inherit;
@@ -55,5 +54,13 @@
 
   ::-webkit-scrollbar {
     display: none;
+  }
+
+  .loading {
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 60px;
   }
 }
