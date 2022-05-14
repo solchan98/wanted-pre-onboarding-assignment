@@ -1,6 +1,6 @@
 import store from 'storejs';
-import { useSetRecoilState } from 'recoil';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 
 import fs from './favorites.module.scss';
 import Modal from '../../components/common/modal';
@@ -10,33 +10,28 @@ import useScroll from '../../hooks/common/useScroll';
 import MovieItem from '../../components/common/movieItem';
 import NoResultImg from '../../assets/no-content.png';
 import useDragAndDrop from '../../hooks/favorites/useDragAndDrop';
-import { movieListState } from '../../recoil/atoms';
-import useFavoriteHandle from '../../hooks/common/useFavoriteHandle';
-import { IFavoriteMovie, IFavoriteMovies } from '../../types/movie/index.d';
+import { IFavoriteMovies } from '../../types/movie/index.d';
+import { favoriteListState } from '../../recoil/atoms';
 
 const Favorites = () => {
 
-  const [favoritMovieList, setFavoriteMovieList] = useState<IFavoriteMovie[]>([]);
-  const setMovieList = useSetRecoilState(movieListState);
+  const [favoritMovieList, setFavoriteMovieList] = useRecoilState(favoriteListState);
   
   const [scrollRef] = useScroll();
   const [onDragStart, onDragEnd, onDragEnter, onDragOver] = useDragAndDrop(favoritMovieList, setFavoriteMovieList);
 
-  const { addFavorites, removeFavorites } = useFavoriteHandle({ setMovieList, setFavoriteMovieList });
-
-  const [isShowModal, data, openModal, closeModal] = useModal({addFavorites, removeFavorites});
+  const [isShowModal, data, openModal, closeModal] = useModal();
 
   useEffect(() => {
     const localMovieData: IFavoriteMovies = store.get(String(process.env.REACT_APP_LOCAL_FAVORITES_KEY));
     const localMovieList = localMovieData ? Object.keys(localMovieData).map((key) => localMovieData[key]) : [];
-    // localMovieList 정렬 
     localMovieList.sort((a, b) => {
       if(a.index < b.index) return -1;
       if(a.index > b.index) return 1;
       return 0;
     });
     setFavoriteMovieList(localMovieList);
-  }, []);
+  }, [setFavoriteMovieList]);
   
   return(
     <section className={fs.mainSection}> 

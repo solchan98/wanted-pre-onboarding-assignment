@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 
 import Modal from '../../components/common/modal';
@@ -12,12 +12,11 @@ import SearchBar from '../../components/common/searchBar';
 import NoResultImg from '../../assets/no-content.png';
 import useSearchMovie from '../../hooks/main/useMovieSearch';
 import { movieListState } from '../../recoil/atoms';
-import useFavoriteHandle from '../../hooks/common/useFavoriteHandle';
 import useMainScrollHandler from '../../hooks/main/useMainScrollHandler';
 
 const Main = () => {
 
-  const [movieList, setMovieList] = useRecoilState(movieListState);
+  const movieList = useRecoilValue(movieListState);
 
   const [scrollRef, onScroll, scrollToTop] = useScroll();
 
@@ -25,9 +24,7 @@ const Main = () => {
 
   const onMainScrollHandler = useMainScrollHandler();
 
-  const { addFavorites, removeFavorites } = useFavoriteHandle({ setMovieList });
-
-  const [isShowModal, data, openModal, closeModal] = useModal({addFavorites, removeFavorites});
+  const [isShowModal, data, openModal, closeModal] = useModal();
 
   return(
     <section className={styles.mainSection}>

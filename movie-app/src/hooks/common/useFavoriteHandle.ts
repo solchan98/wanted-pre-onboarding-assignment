@@ -1,5 +1,4 @@
 import store from 'storejs';
-import { Dispatch } from 'react';
 import { SetterOrUpdater } from 'recoil';
 
 import { IRMovie } from "../../types/apis/index.d";
@@ -7,7 +6,7 @@ import { IFavoriteMovie, IFavoriteMovies } from "../../types/movie/index.d";
 
 interface Props {
   setMovieList: SetterOrUpdater<IRMovie[]>,
-  setFavoriteMovieList?: Dispatch<React.SetStateAction<IFavoriteMovie[]>>,
+  setFavoriteList: SetterOrUpdater<IFavoriteMovie[]>,
 }
 
 interface ReturnTypes {
@@ -15,7 +14,7 @@ interface ReturnTypes {
   removeFavorites: (movie: IRMovie) => void,
 }
 
-const useFavoriteHandle = ({ setMovieList, setFavoriteMovieList }: Props): ReturnTypes => {
+const useFavoriteHandle = ({ setMovieList, setFavoriteList }: Props): ReturnTypes => {
 
   const addFavorites = (movie: IRMovie) => {
     const localFavoriteMovieList = store.get(String(process.env.REACT_APP_LOCAL_FAVORITES_KEY)) || {};
@@ -34,7 +33,7 @@ const useFavoriteHandle = ({ setMovieList, setFavoriteMovieList }: Props): Retur
     delete localFavoriteMovieList[data.imdbID];
     store.set(String(process.env.REACT_APP_LOCAL_FAVORITES_KEY), localFavoriteMovieList);
     setMovieList((prev) => prev.map((item) => (item.imdbID === data.imdbID) ? { ...item, isFavorite: false}  : item));
-    setFavoriteMovieList && setFavoriteMovieList((prev) => prev.filter((item) => item.imdbID !== data.imdbID));
+    setFavoriteList((prev) => prev.filter((item) => item.imdbID !== data.imdbID));
   };
 
   return {addFavorites, removeFavorites};

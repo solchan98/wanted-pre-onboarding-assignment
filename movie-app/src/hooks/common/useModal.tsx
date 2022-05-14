@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { useSetRecoilState } from "recoil";
+
 import { IRMovie } from "../../types/apis/index.d";
+import useFavoriteHandle from "./useFavoriteHandle";
+import { favoriteListState, movieListState } from "../../recoil/atoms";
 
 type ReturnType = [boolean, IRMovie, Function, (moive: IRMovie) => void];
 
-interface CloseHandler {
-  addFavorites: (movie: IRMovie) => void,
-  removeFavorites: (movie: IRMovie) => void,
-}
+const useModal = (): ReturnType => {
 
-const useModal = ({ addFavorites, removeFavorites }: CloseHandler): ReturnType => {
+  const setMovieList = useSetRecoilState(movieListState);;
+  const setFavoriteList = useSetRecoilState(favoriteListState);
+
+  const { addFavorites, removeFavorites } = useFavoriteHandle({ setMovieList, setFavoriteList});
 
   const [isShowModal, setIsShowModal] = useState(false);
   const [selectData, setSelectData] = useState({} as IRMovie);
