@@ -1,6 +1,6 @@
 import { atom } from "recoil";
-import { INIT_MOVIE_STATE, INIT_SEARCH_INFO } from "../constant";
 import { IFavoriteMovie } from "../types/movie/index.d";
+import { INIT_MOVIE_STATE, INIT_SEARCH_INFO } from "../constant";
 
 export const movieListState = atom({
   key: 'movieListState',

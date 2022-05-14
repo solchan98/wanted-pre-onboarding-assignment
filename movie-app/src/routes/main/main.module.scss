@@ -21,7 +21,6 @@
 
     h2 {
       margin: 0;
-      font-family: 'Secular One, sans-serif'; // TODO font-family 좀 더 공부해서 수정하기
       font-weight: 900;
     }
   }
@@ -49,6 +48,10 @@
       justify-content: center;
       width: inherit;
       height: inherit;
+
+      .emptyImg {
+        width: 140px;
+      }
     }
   }
 
@@ -59,8 +62,11 @@
   .loading {
     position: absolute;
     top: calc(50% - 30px);
-    left: calc(50% - 30px);
-    width: 60px;
+    left: calc(50% - 60px);
+    width: 120px;
     height: 60px;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
   }
 }
