@@ -5,13 +5,13 @@
 ### MOVIE APP
 그립 컴퍼니의 기업과제이며, 개인과제입니다.  
 [저장소](https://github.com/solchan98/wanted-pre-onboarding-assignment/tree/main/movie-app)  
-[배포 링크](https://solchan.shop/movie-app/main)  
+[배포 링크](https://solchan0427.netlify.app/movie-app/main)  
 
 ## 필수 아닌 과제
 ### WEATHER APP  
 온보딩 강의 중, 진행 된 주제이며 자율적으로 구현해보는 과제입니다.  
 [저장소](https://github.com/solchan98/weather-app)  
-[배포 링크](https://solchan.shop/weather-app/main)  
+[배포 링크](https://solchan0427.netlify.app/weather-app/main)  
 
 ## 팀과제  
 ### ToDo List  
